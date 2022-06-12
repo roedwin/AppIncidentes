@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo1"
+    tools:context=".MainActivity">
+
+    <!--<androidx.appcompat.widget.Toolbar
+        android:id="@+id/loginBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>-->
+
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="#FFF"
+        android:background="@drawable/usuario"
+        android:layout_gravity="center"/>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+        <EditText
+            android:id="@+id/etUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingresar usuario"
+            android:layout_marginTop="55dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="#1BA3B3"
+            android:textColorHint="#1BA3B3"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/inputs"
+            android:drawableStart="@drawable/user"
+            android:drawablePadding="10dp"
+            android:padding="10dp"/>
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingresar contraseña"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="#1BA3B3"
+            android:textColorHint="#1BA3B3"
+            android:inputType="textPassword"
+            android:background="@drawable/inputs"
+            android:drawableStart="@drawable/candado"
+            android:drawablePadding="10dp"
+            android:padding="10dp"/>
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:text="Iniciar Sesion"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:background="@drawable/background_buttons"
+            android:backgroundTint="#21c1f0"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>
