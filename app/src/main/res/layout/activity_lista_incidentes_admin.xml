@@ -35,8 +35,8 @@
                 android:background="@drawable/background_buttons"
                 android:backgroundTint="#ff0000"
                 android:text="PDF"
-                android:textSize="20sp"
                 android:textColor="#fff"
+                android:textSize="20sp"
                 android:textStyle="bold" />
         </RelativeLayout>
     </LinearLayout>

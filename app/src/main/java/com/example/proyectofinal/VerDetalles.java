@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -116,6 +117,7 @@ public class VerDetalles extends AppCompatActivity {
         CheckBox emE = v.findViewById(R.id.checkResuelto);
 
         Button btnGuardarEstado = v.findViewById(R.id.guardarEstado);
+        EditText msj = v.findViewById(R.id.enviarMensaje);
 
         if (llamarEstado.equals("Activo")){
             adE.setChecked(true);
@@ -145,13 +147,13 @@ public class VerDetalles extends AppCompatActivity {
         btnGuardarEstado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (adE.isChecked()==true){
                     seleccionado = "Activo";
 
                 }
                 if (emE.isChecked()==true){
                     seleccionado = "Resuelto";
-
                 }
 
                 if (seleccionado.equals("Activo")){
@@ -159,6 +161,7 @@ public class VerDetalles extends AppCompatActivity {
                 }
                 if (seleccionado.equals("Resuelto")){
                     reference.child(llamarTitulo).child("estado").setValue(seleccionado);
+                    reference.child(llamarTitulo).child("mensaje").setValue(msj.getText().toString());
                     elEstado.setText(seleccionado);
                     dialogS.dismiss();
                 }

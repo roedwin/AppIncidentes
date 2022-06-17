@@ -7,10 +7,37 @@
     android:orientation="vertical"
     tools:context=".ListaIncidentesAdminR">
 
-    <SearchView
-        android:id="@+id/searchBarIAdmr"
+    <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3">
+            <SearchView
+                android:id="@+id/searchBarIAdmR"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/generarPDFR"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_buttons"
+                android:backgroundTint="#ff0000"
+                android:text="PDF"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </LinearLayout>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -21,7 +48,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rviewIncidentesAdminr"
+                android:id="@+id/rviewIncidentesAdminR"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
         </LinearLayout>

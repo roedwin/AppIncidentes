@@ -2,13 +2,13 @@ package com.example.proyectofinal.Modelos;
 
 public class ModeloIncidente {
 
-    String titulo, descripcion, path, estado, nombre, fechaCreacion, fechaSolucion;
+    String titulo, descripcion, path, estado, nombre, fechaCreacion, fechaSolucion, mensaje;
 
 
 
     public ModeloIncidente() {}
 
-    public ModeloIncidente(String titulo, String descripcion, String path, String estado, String nombre, String fechaCreacion, String fechaSolucion) {
+    public ModeloIncidente(String titulo, String descripcion, String path, String estado, String nombre, String fechaCreacion, String fechaSolucion, String mensaje) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.path = path;
@@ -16,6 +16,7 @@ public class ModeloIncidente {
         this.nombre = nombre;
         this.fechaCreacion = fechaCreacion;
         this.fechaSolucion = fechaSolucion;
+        this.mensaje = mensaje;
     }
 
     public String getTitulo() {
@@ -72,5 +73,14 @@ public class ModeloIncidente {
 
     public void setFechaSolucion(String fechaSolucion) {
         this.fechaSolucion = fechaSolucion;
+    }
+
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
     }
 }

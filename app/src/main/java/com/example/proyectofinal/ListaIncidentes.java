@@ -166,6 +166,7 @@ public class ListaIncidentes extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull ListaIncidentes.miViewHolder holder, int position, @NonNull ModeloIncidente modeloIncidente) {
                 holder.setNombre(modeloIncidente.getnombre());
                 holder.setTitulo(modeloIncidente.getTitulo());
+                holder.setMensaje(modeloIncidente.getMensaje());
 
                 /*holder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -310,7 +311,7 @@ public class ListaIncidentes extends AppCompatActivity {
                                 Uri uri = task.getResult();
 
                                 String urlRecibido = uri.toString();
-                                ModeloIncidente model = new ModeloIncidente(etTitulo,etDescripcion,urlRecibido,"Activo",nombreRecibido,date+"-"+hour,"null");
+                                ModeloIncidente model = new ModeloIncidente(etTitulo,etDescripcion,urlRecibido,"Activo",nombreRecibido,date+"-"+hour,"-","");
 
                                 reference.child(etTitulo).setValue(model).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
@@ -398,6 +399,10 @@ public class ListaIncidentes extends AppCompatActivity {
         public void setTitulo(String titulo){
             TextView textViewTitulo = mView.findViewById(R.id.tituloCardIncidente);
             textViewTitulo.setText(titulo);
+        }
+        public void setMensaje(String mensaje){
+            TextView textViewMensaje = mView.findViewById(R.id.mensajeRecibido);
+            textViewMensaje.setText(mensaje);
         }
     }
 }

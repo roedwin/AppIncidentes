@@ -24,7 +24,6 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -66,9 +65,13 @@ import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
+import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.HorizontalAlignment;
+import com.itextpdf.layout.property.TextAlignment;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -260,7 +263,7 @@ public class ListaIncidentesAdmin extends AppCompatActivity {
         }
     }
     public void permisosDenegados(){
-        Toast.makeText(ListaIncidentesAdmin.this, "Ha ocurrido un error se requiere que conceda los permisos", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(ListaIncidentesAdmin.this, "Ha ocurrido un error se requiere que conceda los permisos", Toast.LENGTH_SHORT).show();
     }
     public void exportarPDF(){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
@@ -276,30 +279,146 @@ public class ListaIncidentesAdmin extends AppCompatActivity {
             Document documento = new Document(pdfDocumento);
             pdfDocumento.setDefaultPageSize(PageSize.A4);
 
+            //17 pintando la imagen en el documento pdf
+            Drawable logo = getDrawable(R.drawable.ir);
+            Bitmap lienzo =((BitmapDrawable)logo).getBitmap();
+            ByteArrayOutputStream streamArchivo = new ByteArrayOutputStream();
+            lienzo.compress(Bitmap.CompressFormat.PNG,100,streamArchivo);
+            byte[] datosLienzo = streamArchivo.toByteArray();
 
             //pintar el encabezado de la tabla
-            documento.add(new Paragraph(""));
+
+            float columnWidth[] = {140,140,140,140};
+
+            String date = DateFormat.getDateInstance().format(new Date());
+            Calendar calendario = Calendar.getInstance();
+
+            int hora, minutos, segundos;
+            hora = calendario.get(Calendar.HOUR_OF_DAY);
+            minutos = calendario.get(Calendar.MINUTE);
+            segundos = calendario.get(Calendar.SECOND);
+
+            String hour;
+
+            if (hora <= 12){
+                hour = hora + ":" + minutos + ":" + segundos + " am";
+            }else{
+                switch (hora){
+                    case 13:
+                        hora = 1;
+                        break;
+                    case 14:
+                        hora = 2;
+                        break;
+                    case 15:
+                        hora = 3;
+                        break;
+                    case 16:
+                        hora = 4;
+                        break;
+                    case 17:
+                        hora = 5;
+                        break;
+                    case 18:
+                        hora = 6;
+                        break;
+                    case 19:
+                        hora = 7;
+                        break;
+                    case 20:
+                        hora = 8;
+                        break;
+                    case 21:
+                        hora = 9;
+                        break;
+                    case 22:
+                        hora = 10;
+                        break;
+                    case 23:
+                        hora = 11;
+                        break;
+                    case 2:
+                        hora = 12;
+                        break;
+                }
+                hour = hora + ":" + minutos + ":" + segundos + " pm";
+            }
+
+            //pintar el logo dentro del pdf
+            ImageData imgDatos= ImageDataFactory.create(datosLienzo);
+            com.itextpdf.layout.element.Image elLogo = new Image(imgDatos);
+            elLogo.setHeight(60);
+            elLogo.setHorizontalAlignment(HorizontalAlignment.LEFT);
+
+            Table table1 = new Table(columnWidth);
+
+            //Encabezado
+            //fila 1
+            table1.addCell(new Cell(4,1).add(elLogo).setBorder(Border.NO_BORDER));
+            table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
+            table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
+            table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
+
+            //fila 2
+            //table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
+            table1.addCell(new Cell(1,3).add(new Paragraph("")).setBorder(Border.NO_BORDER));
+            //table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
+
+            //fila 3
+            //table1.addCell(new Cell().add(new Paragraph("")));
+            table1.addCell(new Cell(1,3).add(new Paragraph("Reporte General de Incidentes")
+                            .setFontSize(20f))
+                    .setTextAlignment(TextAlignment.CENTER)
+                    .setBold().setBorder(Border.NO_BORDER));
+            //table1.addCell(new Cell().add(new Paragraph("")));
+
+            //fila 4
+            //table1.addCell(new Cell().add(new Paragraph("")));
+            table1.addCell(new Cell(1,3).add(new Paragraph("")).setBorder(Border.NO_BORDER));
+            //table1.addCell(new Cell().add(new Paragraph("")));
+
+            //fila 5
+            //table1.addCell(new Cell().add(new Paragraph("")));
+            table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
+            table1.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.RIGHT)
+                    .setBorder(Border.NO_BORDER));
+            table1.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.RIGHT).setBorder(Border.NO_BORDER));
+
+            documento.add(table1);
+            documento.add(new Paragraph("\n"));
+            documento.add(new Paragraph("Fecha: "+date));
+            documento.add(new Paragraph("Hora: "+hour));
+
+            //documento.add(new Paragraph("\n"));
+
             //pintar las columnas de la tabla
-            float anchoColumna[]= {140f,140f,100f};
+            float anchoColumna[]= {140f,140f,80f,140f};
             Table tabla = new Table(anchoColumna);
+
 
             Cell celdaID = new Cell();
             celdaID.setBackgroundColor(ColorConstants.BLACK);
             celdaID.setFontColor(ColorConstants.WHITE);
-            celdaID.add(new Paragraph("ID"));
+            celdaID.add(new Paragraph("Titulo"));
             tabla.addCell(celdaID);
 
             Cell celdaPlaca = new Cell();
             celdaPlaca.setBackgroundColor(ColorConstants.BLACK);
             celdaPlaca.setFontColor(ColorConstants.WHITE);
-            celdaPlaca.add(new Paragraph("Placa de Taxi"));
+            celdaPlaca.add(new Paragraph("Usuario"));
             tabla.addCell(celdaPlaca);
 
             Cell celdaMarca = new Cell();
             celdaMarca.setBackgroundColor(ColorConstants.BLACK);
             celdaMarca.setFontColor(ColorConstants.WHITE);
-            celdaMarca.add(new Paragraph("Marca de Taxi"));
+            celdaMarca.add(new Paragraph("Estado"));
             tabla.addCell(celdaMarca);
+
+            Cell celdaDesc = new Cell();
+            celdaDesc.setBackgroundColor(ColorConstants.BLACK);
+            celdaDesc.setFontColor(ColorConstants.WHITE);
+            celdaDesc.add(new Paragraph("Descripcion"));
+            tabla.addCell(celdaDesc);
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -322,6 +441,12 @@ public class ListaIncidentesAdmin extends AppCompatActivity {
                         Marca.setFontColor(ColorConstants.BLACK);
                         Marca.add(new Paragraph(myData.child("estado").getValue().toString()));
                         tabla.addCell(Marca);
+
+                        Cell Descripcion = new Cell();
+                        Descripcion.setBackgroundColor(ColorConstants.WHITE);
+                        Descripcion.setFontColor(ColorConstants.BLACK);
+                        Descripcion.add(new Paragraph(myData.child("descripcion").getValue().toString()));
+                        tabla.addCell(Descripcion);
                     }
 
                     //miBD.close();
