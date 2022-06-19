@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +22,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class VerDetalles extends AppCompatActivity {
 
@@ -76,6 +82,13 @@ public class VerDetalles extends AppCompatActivity {
         llamarEstado = getIntent().getExtras().getString("estado");
         getImg = reference.child(llamarTitulo).child("path");
         verDetallesI(llamarTitulo,llamarDescripcion,llamarFecha,llamarEstado);
+
+        if (llamarEstado.equals("Activo")){
+            elEstado.setTextColor(Color.GREEN);
+        }
+        if (llamarEstado.equals("Resuelto")){
+            elEstado.setTextColor(Color.BLUE);
+        }
     }
 
     private void verDetallesI(String t,String d,String f,String e) {
@@ -83,7 +96,7 @@ public class VerDetalles extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String link = snapshot.getValue(String.class);
-                Picasso.with(VerDetalles.this).load(link).rotate(270).into(imageView);
+                Picasso.with(VerDetalles.this).load(link).rotate(0).into(imageView);
             }
 
             @Override
@@ -116,7 +129,10 @@ public class VerDetalles extends AppCompatActivity {
         CheckBox adE = v.findViewById(R.id.checkActivo);
         CheckBox emE = v.findViewById(R.id.checkResuelto);
 
+        llamarEstado = getIntent().getExtras().getString("estado");
+
         Button btnGuardarEstado = v.findViewById(R.id.guardarEstado);
+
         EditText msj = v.findViewById(R.id.enviarMensaje);
 
         if (llamarEstado.equals("Activo")){
@@ -144,29 +160,54 @@ public class VerDetalles extends AppCompatActivity {
             }
         });
 
-        btnGuardarEstado.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        String date = DateFormat.getDateInstance().format(new Date());
+        Calendar calendario = Calendar.getInstance();
 
-                if (adE.isChecked()==true){
-                    seleccionado = "Activo";
 
-                }
-                if (emE.isChecked()==true){
-                    seleccionado = "Resuelto";
-                }
+        int hora, minutos, segundos;
+        hora = calendario.get(Calendar.HOUR_OF_DAY);
+        minutos = calendario.get(Calendar.MINUTE);
+        segundos = calendario.get(Calendar.SECOND);
 
-                if (seleccionado.equals("Activo")){
-                    dialogS.dismiss();
+        String hour;
+
+        if (hora <= 12){
+            hour = hora + ":" + minutos + ":" + segundos + " am";
+        }else{
+            hour = hora + ":" + minutos + ":" + segundos + " pm";
+        }
+
+        if (llamarEstado.equals("Resuelto")){
+            btnGuardarEstado.setVisibility(Button.GONE);
+            btnGuardarEstado.setBackgroundColor(Color.GRAY);
+        }else {
+            btnGuardarEstado.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    if (adE.isChecked()==true){
+                        seleccionado = "Activo";
+
+                    }
+                    if (emE.isChecked()==true){
+                        seleccionado = "Resuelto";
+                    }
+
+                    if (seleccionado.equals("Activo")){
+                        dialogS.dismiss();
+                    }
+                    if (seleccionado.equals("Resuelto")){
+                        reference.child(llamarTitulo).child("estado").setValue(seleccionado);
+                        reference.child(llamarTitulo).child("mensaje").setValue(msj.getText().toString());
+                        elEstado.setText(seleccionado);
+                        dialogS.dismiss();
+                    }
+                    Intent intent = new Intent(VerDetalles.this, ListaIncidentesAdminA.class);
+                    startActivity(intent);
+                    finish();
                 }
-                if (seleccionado.equals("Resuelto")){
-                    reference.child(llamarTitulo).child("estado").setValue(seleccionado);
-                    reference.child(llamarTitulo).child("mensaje").setValue(msj.getText().toString());
-                    elEstado.setText(seleccionado);
-                    dialogS.dismiss();
-                }
-            }
-        });
-        dialogS.show();
+            });
+            dialogS.show();
+        }
     }
 }

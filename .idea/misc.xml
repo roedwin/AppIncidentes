@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/Getga/AndroidStudioProjects/ProyectoFinal/app/src/main/res/drawable/background_buttons.xml" value="0.1265" />
         <entry key="..\:/Users/Getga/AndroidStudioProjects/ProyectoFinal/app/src/main/res/drawable/background_design.xml" value="0.1265" />
+        <entry key="..\:/Users/Getga/AndroidStudioProjects/ProyectoFinal/app/src/main/res/drawable/badge_file.xml" value="0.141" />
         <entry key="..\:/Users/Getga/AndroidStudioProjects/ProyectoFinal/app/src/main/res/drawable/card_layout_incidentes_admin.xml" value="0.1365" />
         <entry key="..\:/Users/Getga/AndroidStudioProjects/ProyectoFinal/app/src/main/res/drawable/card_style.xml" value="0.128" />
         <entry key="..\:/Users/Getga/AndroidStudioProjects/ProyectoFinal/app/src/main/res/drawable/img_redondeada.xml" value="0.162" />
@@ -16,8 +17,8 @@
         <entry key="..\:/Users/Getga/AndroidStudioProjects/ProyectoFinal/app/src/main/res/drawable/redeondear.xml" value="0.162" />
         <entry key="..\:/Users/Getga/AndroidStudioProjects/ProyectoFinal/app/src/main/res/drawable/report_design.xml" value="0.162" />
         <entry key="..\:/Users/Getga/AndroidStudioProjects/ProyectoFinal/app/src/main/res/drawable/user_design.xml" value="0.162" />
-        <entry key="..\:/Users/Getga/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/activity_home.xml" value="0.25" />
-        <entry key="..\:/Users/Getga/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/activity_home_empleado.xml" value="0.25" />
+        <entry key="..\:/Users/Getga/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/activity_home.xml" value="0.2670807453416149" />
+        <entry key="..\:/Users/Getga/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/activity_home_empleado.xml" value="0.33" />
         <entry key="..\:/Users/Getga/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/activity_intermediaro_incidentes.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Getga/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/activity_lista_incidentes.xml" value="0.25" />
         <entry key="..\:/Users/Getga/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/activity_lista_incidentes_admin.xml" value="0.20416666666666666" />
@@ -31,7 +32,7 @@
         <entry key="..\:/Users/Getga/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/buttons.xml" value="0.25" />
         <entry key="..\:/Users/Getga/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/cambiar_status.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Getga/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/card_layout.xml" value="0.25" />
-        <entry key="..\:/Users/Getga/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/card_layout_incidentes.xml" value="0.25" />
+        <entry key="..\:/Users/Getga/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/card_layout_incidentes.xml" value="0.33" />
         <entry key="..\:/Users/Getga/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/card_layout_incidentes_admin.xml" value="0.25" />
         <entry key="..\:/Users/Getga/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/detalle_incidente.xml" value="0.25" />
         <entry key="..\:/Users/Getga/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/fragment_activos.xml" value="0.20416666666666666" />

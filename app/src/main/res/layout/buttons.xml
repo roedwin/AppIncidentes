@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="#ededed"
     android:gravity="center"
@@ -17,18 +17,6 @@
             android:layout_height="wrap_content"
             android:background="@drawable/background_buttons"
             android:src="@drawable/cam" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp">
-
-        <ImageButton
-            android:id="@+id/searchPhoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background_buttons"
-            android:src="@drawable/gal" />
     </RelativeLayout>
 
 </LinearLayout>

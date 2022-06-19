@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/card_style"
-        android:backgroundTint="#4DA0A7"
+        android:backgroundTint="#cbcee8"
         android:layout_margin="0dp">
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -64,11 +64,12 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1">
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/verDetalleIncicente"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Ver" />
+                        android:src="@drawable/ojo"
+                        android:backgroundTint="#cbcee8"/>
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>

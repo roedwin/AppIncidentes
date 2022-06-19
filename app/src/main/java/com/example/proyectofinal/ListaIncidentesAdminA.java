@@ -446,7 +446,7 @@ public class ListaIncidentesAdminA extends AppCompatActivity {
             String nombreArchivo = String.valueOf(archivo);
             File Referenciaarchivo = new File(nombreArchivo);
             if (Referenciaarchivo.exists()){
-                Uri url = FileProvider.getUriForFile(contexto,contexto.getApplicationContext().getPackageName()+".provider",Referenciaarchivo);
+                Uri url = FileProvider.getUriForFile(contexto,"com.example.proyectofinal",Referenciaarchivo);
                 Intent ventana = new Intent(Intent.ACTION_VIEW);
                 ventana.setDataAndType(url,"application/pdf");
                 ventana.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);

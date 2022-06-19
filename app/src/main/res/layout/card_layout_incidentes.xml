@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@drawable/card_style"
-        android:backgroundTint="#4DA0A7"
+        android:backgroundTint="#cbcee8"
         android:gravity="center"
         android:layout_margin="0dp">
         <RelativeLayout
@@ -25,7 +25,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
-                android:src="@drawable/proble"/>3
+                android:src="@drawable/proble"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="0dp"

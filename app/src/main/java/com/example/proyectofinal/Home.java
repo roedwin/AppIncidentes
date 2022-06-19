@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -21,6 +22,10 @@ import android.widget.Toast;
 import com.example.proyectofinal.Modelos.ModeloUsuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.badge.BadgeDrawable;
+import com.google.android.material.badge.BadgeUtils;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,6 +35,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.nex3z.notificationbadge.NotificationBadge;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -40,12 +46,14 @@ public class Home extends AppCompatActivity {
 
     private DatabaseReference reference;
 
-    Button goToUsers,goToIncidentes;
+    Button goToUsers, goToIncidentes;
+
     TextView usuario, rol, count;
     String nombreRecibido;
     String usuarioRecibido;
     String estadoRecibido;
 
+    NotificationBadge notificationBadge;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +62,9 @@ public class Home extends AppCompatActivity {
 
         usuario = findViewById(R.id.idUsuarioHome);
         rol = findViewById(R.id.idRolHome);
-        count = findViewById(R.id.activosCount);
+        //count = findViewById(R.id.activosCount);
+
+        notificationBadge = findViewById(R.id.badgeN);
 
 
         goToUsers = findViewById(R.id.btnGoToUsers);
@@ -87,17 +97,23 @@ public class Home extends AppCompatActivity {
         super.onStart();
         reference = FirebaseDatabase.getInstance().getReference().child("TblIncidentes");
 
-        reference.orderByChild("estado").equalTo("Resuelto").addValueEventListener(new ValueEventListener() {
+        reference.orderByChild("estado").equalTo("Activo").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 long total = snapshot.getChildrenCount();
-                count.setText(String.valueOf(total));
+                //count.setText(String.valueOf(total));
+                String num = String.valueOf(total);
+
+                notificationBadge.setNumber(Integer.valueOf(num));
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+
+
     }
 
 

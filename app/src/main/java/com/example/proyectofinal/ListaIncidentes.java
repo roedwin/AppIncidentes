@@ -203,7 +203,7 @@ public class ListaIncidentes extends AppCompatActivity {
         miDialog.setView(view);
 
         AlertDialog dialog = miDialog.create();
-        dialog.setCancelable(false);
+        dialog.setCancelable(true);
 
         String nombreRecibido = getIntent().getExtras().getString("nombre");
         String usuarioRecibido = getIntent().getExtras().getString("u");
@@ -229,10 +229,9 @@ public class ListaIncidentes extends AppCompatActivity {
                 miDialog.setView(v);
 
                 AlertDialog dialog = miDialog.create();
-                dialog.setCancelable(false);
+                dialog.setCancelable(true);
 
                 ImageButton btnTomarFoto = v.findViewById(R.id.takePhoto);
-                ImageButton btnBuscarFoto = v.findViewById(R.id.searchPhoto);
 
                 btnTomarFoto.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -242,7 +241,6 @@ public class ListaIncidentes extends AppCompatActivity {
                         texto.setText("");
                     }
                 });
-
                 dialog.show();
             }
         });
@@ -259,8 +257,6 @@ public class ListaIncidentes extends AppCompatActivity {
                 String id = reference.push().getKey();
                 String date = DateFormat.getDateInstance().format(new Date());
                 Calendar calendario = Calendar.getInstance();
-
-
 
 
                 int hora, minutos, segundos;
@@ -361,25 +357,24 @@ public class ListaIncidentes extends AppCompatActivity {
     public void tomarFoto() {
         Intent intentCamara = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (intentCamara.resolveActivity(getPackageManager())!=null){
-            File imagenFile = null;
+            File imagenFile;
             try {
                 imagenFile = crearImagen();
+                if (imagenFile!=null){
+                    Uri fotoUri = FileProvider.getUriForFile(this,"com.example.proyectofinal",imagenFile);
+                    intentCamara.putExtra(MediaStore.EXTRA_OUTPUT,fotoUri);
+                    startActivityForResult(intentCamara,1);
+                }
             }catch (IOException e){
                 e.printStackTrace();
-            }
-            if (imagenFile!=null){
-                Uri fotoUri = FileProvider.getUriForFile(this,"com.example.proyectofinal",imagenFile);
-                intentCamara.putExtra(MediaStore.EXTRA_OUTPUT,fotoUri);
-                startActivityForResult(intentCamara,1);
             }
         }
     }
 
     private File crearImagen() throws IOException {
         String nombreFoto = "FOTO_";
-        File directorio = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File directorio = getExternalFilesDir(Environment.DIRECTORY_DCIM);
         File imagenF = File.createTempFile(nombreFoto,"jpg",directorio);
-
         rutaPath = imagenF.getAbsolutePath();
         return imagenF;
     }

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="#187396"
+    android:background="@drawable/pp"
     >
 
     <LinearLayout
@@ -13,6 +13,7 @@
         android:elevation="10dp"
         app:cardElevation="10dp"
         android:background="@drawable/card_style"
+        android:backgroundTint="#cbcee8"
         android:layout_margin="10dp"
         android:orientation="vertical">
         <LinearLayout
@@ -26,8 +27,8 @@
 
                 <ImageView
                     android:id="@+id/imagenDeFirebase"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:src="@drawable/subir" />
             </RelativeLayout>
             <RelativeLayout
